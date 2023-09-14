@@ -38,7 +38,6 @@ PortAddress10=89
 PeerNodeAddress='main.saseul.net'
 
 
-
 echo "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□"
 echo "□□□□□□□□□□□□□□■■■■■■■■□□□□□□□□□□□■■□□□□■■■■■■■■□□"
 echo "□□□□□■■□□□□□□□■■□□□□□□□□□■■■■■■□□■■□□□□■■■■■■■■■□"
@@ -96,10 +95,12 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress1 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress1`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress1 -p $PortAddress1:$PortAddress1 -v /var/saseul-data$PortAddress1:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo docker exec -i saseul-node$PortAddress1 saseul-script setenv --endpoint $IpAddress:$PortAddress1`
-			echo "$C"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress1 -p $PortAddress1:$PortAddress1 -v /var/saseul-data$PortAddress1:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo docker exec -i saseul-node$PortAddress1 saseul-script setenv --endpoint $IpAddress:$PortAddress1`
+	    echo "$C"
+            D=`sudo docker exec -i saseul-node saseul-script getenv -m $WalletAddress1`
+	    echo "$D"
             ;;
         "1번노드_싱크")
             echo "$PortAddress1 포트 노드의 싱크중 입니다."
@@ -110,100 +111,118 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress2 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress2`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress2 -p $PortAddress2:$PortAddress2 -v /var/saseul-data$PortAddress2:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress2`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress2 saseul-script setenv --endpoint $IpAddress:$PortAddress2`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress2 -p $PortAddress2:$PortAddress2 -v /var/saseul-data$PortAddress2:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress2`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress2 saseul-script setenv --endpoint $IpAddress:$PortAddress2`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress2 saseul-script getenv -m $WalletAddress2`
+	    echo "$E"
             ;;
         "3번노드_설치")
             echo "$PortAddress3 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress3`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress3 -p $PortAddress3:$PortAddress3 -v /var/saseul-data$PortAddress3:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress3`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress3 saseul-script setenv --endpoint $IpAddress:$PortAddress3`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress3 -p $PortAddress3:$PortAddress3 -v /var/saseul-data$PortAddress3:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress3`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress3 saseul-script setenv --endpoint $IpAddress:$PortAddress3`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress3 saseul-script getenv -m $WalletAddress3`
+	    echo "$E"
             ;;
         "4번노드_설치")
             echo "$PortAddress4 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress4`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress4 -p $PortAddress4:$PortAddress4 -v /var/saseul-data$PortAddress4:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress4`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress4 saseul-script setenv --endpoint $IpAddress:$PortAddress4`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress4 -p $PortAddress4:$PortAddress4 -v /var/saseul-data$PortAddress4:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress4`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress4 saseul-script setenv --endpoint $IpAddress:$PortAddress4`
+	    echo "$D"
+     	    E=`sudo docker exec -i saseul-node$PortAddress4 saseul-script getenv -m $WalletAddress4`
+	    echo "$E"
             ;;
         "5번노드_설치")
             echo "$PortAddress5 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress5`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress5 -p $PortAddress5:$PortAddress5 -v /var/saseul-data$PortAddress5:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress5`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress5 saseul-script setenv --endpoint $IpAddress:$PortAddress5`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress5 -p $PortAddress5:$PortAddress5 -v /var/saseul-data$PortAddress5:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress5`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress5 saseul-script setenv --endpoint $IpAddress:$PortAddress5`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress5 saseul-script getenv -m $WalletAddress5`
+	    echo "$E"
             ;;
         "6번노드_설치")
             echo "$PortAddress6 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress6`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress6 -p $PortAddress6:$PortAddress6 -v /var/saseul-data$PortAddress6:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress6`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress6 saseul-script setenv --endpoint $IpAddress:$PortAddress6`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress6 -p $PortAddress6:$PortAddress6 -v /var/saseul-data$PortAddress6:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress6`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress6 saseul-script setenv --endpoint $IpAddress:$PortAddress6`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress6 saseul-script getenv -m $WalletAddress6`
+	    echo "$E"
             ;;
         "7번노드_설치")
             echo "$PortAddress7 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress7`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress7 -p $PortAddress7:$PortAddress7 -v /var/saseul-data$PortAddress7:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress7`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress7 saseul-script setenv --endpoint $IpAddress:$PortAddress7`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress7 -p $PortAddress7:$PortAddress7 -v /var/saseul-data$PortAddress7:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress7`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress7 saseul-script setenv --endpoint $IpAddress:$PortAddress7`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress7 saseul-script getenv -m $WalletAddress7`
+	    echo "$E"
             ;;
         "8번노드_설치")
             echo "$PortAddress8 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress8`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress8 -p $PortAddress8:$PortAddress8 -v /var/saseul-data$PortAddress8:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress8`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress8 saseul-script setenv --endpoint $IpAddress:$PortAddress8`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress8 -p $PortAddress8:$PortAddress8 -v /var/saseul-data$PortAddress8:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress8`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress8 saseul-script setenv --endpoint $IpAddress:$PortAddress8`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress8 saseul-script getenv -m $WalletAddress8`
+	    echo "$E"
             ;;
         "9번노드_설치")
             echo "$PortAddress9 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress9`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress9 -p $PortAddress9:$PortAddress9 -v /var/saseul-data$PortAddress9:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress9`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress9 saseul-script setenv --endpoint $IpAddress:$PortAddress9`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress9 -p $PortAddress9:$PortAddress9 -v /var/saseul-data$PortAddress9:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress9`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress9 saseul-script setenv --endpoint $IpAddress:$PortAddress9`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress9 saseul-script getenv -m $WalletAddress9`
+	    echo "$E"
             ;;
         "10번노드_설치")
             echo "$PortAddress10 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress10`
             echo "$A"
-			B=`sudo docker run -d --init --name saseul-node$PortAddress10 -p $PortAddress10:$PortAddress10 -v /var/saseul-data$PortAddress10:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
-			echo "$B"
-			C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress10`
-			echo "$C"
-			D=`sudo docker exec -i saseul-node$PortAddress10 saseul-script setenv --endpoint $IpAddress:$PortAddress10`
-			echo "$D"
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress10 -p $PortAddress10:$PortAddress10 -v /var/saseul-data$PortAddress10:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    echo "$B"
+	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress10`
+	    echo "$C"
+	    D=`sudo docker exec -i saseul-node$PortAddress10 saseul-script setenv --endpoint $IpAddress:$PortAddress10`
+	    echo "$D"
+            E=`sudo docker exec -i saseul-node$PortAddress10 saseul-script getenv -m $WalletAddress10`
+	    echo "$E"
             ;;
 	"종료")
 	    echo "작업을 종료했습니다."
