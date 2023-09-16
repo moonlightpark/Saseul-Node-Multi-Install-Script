@@ -10,5 +10,6 @@ chmod 777 install.sh &
 
 
 
+Saseul Developer OpenTalk : https://open.kakao.com/o/gclfhqHf
 
 Coffee (SASEUL) : a7d8e46c6d956fff9dc534dfbf4904020d5484109532
