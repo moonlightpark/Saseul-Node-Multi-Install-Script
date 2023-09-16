@@ -8,7 +8,7 @@
 
 ## Getting Started
 
-First, run the development server:
+First, run the shell script :
 
 ```bash
 # Set basic variables set.
