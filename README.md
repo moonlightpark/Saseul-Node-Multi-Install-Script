@@ -5,8 +5,21 @@
 
 윈도우용 파일 참고해서 작성함.
 
-chmod 777 install.sh &
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+# Set basic variables set.
+vi install.sh  (wallet address, port, IP address)
+:wq
+# Permission settings
+chmod 777 install.sh
+# run
 ./install.sh
+```
+
 
 
 
