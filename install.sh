@@ -95,7 +95,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress1 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress1`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress1 -p $PortAddress1:$PortAddress1 -v /var/saseul-data$PortAddress1:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress1 -p $PortAddress1:80 -v /var/saseul-data$PortAddress1:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo docker exec -i saseul-node$PortAddress1 saseul-script setenv --endpoint $IpAddress:$PortAddress1`
 	    echo "$C"
@@ -111,7 +111,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress2 포트 노드를 설힙니다."
             A=`sudo mkdir /var/saseul-data$PortAddress2`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress2 -p $PortAddress2:$PortAddress2 -v /var/saseul-data$PortAddress2:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress2 -p $PortAddress2:80 -v /var/saseul-data$PortAddress2:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress2`
 	    echo "$C"
@@ -124,7 +124,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress3 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress3`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress3 -p $PortAddress3:$PortAddress3 -v /var/saseul-data$PortAddress3:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress3 -p $PortAddress3:80 -v /var/saseul-data$PortAddress3:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress3`
 	    echo "$C"
@@ -137,7 +137,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress4 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress4`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress4 -p $PortAddress4:$PortAddress4 -v /var/saseul-data$PortAddress4:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress4 -p $PortAddress4:80 -v /var/saseul-data$PortAddress4:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress4`
 	    echo "$C"
@@ -150,7 +150,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress5 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress5`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress5 -p $PortAddress5:$PortAddress5 -v /var/saseul-data$PortAddress5:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress5 -p $PortAddress5:80 -v /var/saseul-data$PortAddress5:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress5`
 	    echo "$C"
@@ -163,7 +163,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress6 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress6`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress6 -p $PortAddress6:$PortAddress6 -v /var/saseul-data$PortAddress6:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress6 -p $PortAddress6:80 -v /var/saseul-data$PortAddress6:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress6`
 	    echo "$C"
@@ -176,7 +176,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress7 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress7`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress7 -p $PortAddress7:$PortAddress7 -v /var/saseul-data$PortAddress7:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress7 -p $PortAddress7:80 -v /var/saseul-data$PortAddress7:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress7`
 	    echo "$C"
@@ -189,7 +189,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress8 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress8`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress8 -p $PortAddress8:$PortAddress8 -v /var/saseul-data$PortAddress8:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress8 -p $PortAddress8:80 -v /var/saseul-data$PortAddress8:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress8`
 	    echo "$C"
@@ -202,7 +202,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress9 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress9`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress9 -p $PortAddress9:$PortAddress9 -v /var/saseul-data$PortAddress9:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress9 -p $PortAddress9:80 -v /var/saseul-data$PortAddress9:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress9`
 	    echo "$C"
@@ -215,7 +215,7 @@ select fav in "${foods[@]}"; do
             echo "$PortAddress10 포트 노드를 설치합니다."
             A=`sudo mkdir /var/saseul-data$PortAddress10`
             echo "$A"
-	    B=`sudo docker run -d --init --name saseul-node$PortAddress10 -p $PortAddress10:$PortAddress10 -v /var/saseul-data$PortAddress10:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
+	    B=`sudo docker run -d --init --name saseul-node$PortAddress10 -p $PortAddress10:80 -v /var/saseul-data$PortAddress10:/var/saseul/saseul-network/data artifriends/saseul-network:latest`
 	    echo "$B"
 	    C=`sudo cp -p -R /var/saseul-data$PortAddress1/* /var/saseul-data$PortAddress10`
 	    echo "$C"
