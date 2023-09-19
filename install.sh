@@ -104,8 +104,8 @@ select fav in "${foods[@]}"; do
             ;;
         "1번노드_싱크")
             echo "$PortAddress1 포트 노드의 싱크중 입니다."
-			A=`sudo docker exec -i saseul-node$PortAddress1 saseul-script forcesync --peer $PeerNodeAddress`
-			echo "$A"
+	    A=`sudo docker exec -i saseul-node$PortAddress1 saseul-script forcesync --peer $PeerNodeAddress`
+	    echo "$A"
             ;;
         "2번노드_설치")
             echo "$PortAddress2 포트 노드를 설힙니다."
