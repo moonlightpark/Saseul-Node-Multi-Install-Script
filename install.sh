@@ -74,11 +74,11 @@ select fav in "${foods[@]}"; do
 			
 	    	A=`sudo apt-get update`
 	    	echo "$A"
-	    	B=`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+	    	B=`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - `
 	    	echo "$B"
-	    	C=`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+	    	C=`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" `
 	    	echo "$C"
-	    	D=`sudo apt-get update`
+	    	D=`sudo apt-get update `
 	    	echo "$D"
 	    	E=`sudo apt-get install docker-ce docker-ce-cli containerd.io`
 	    	echo "$E"
