@@ -9,7 +9,7 @@ clear
 WalletAddress = '22a43847efd74831c837e8fdf299490dc5bff1edb847'
 
 #:: 공인 IP 입력 ::
-IpAddress='211.222.145.105'
+IpAddress='1.1.1.1'
 
 #:: 블록데이터를 받아올 타겟노드 입력 ::
 PeerNodeAddress='main.saseul.net'
