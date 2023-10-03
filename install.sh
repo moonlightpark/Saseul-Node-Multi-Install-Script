@@ -6,10 +6,10 @@ clear
 #:::::::::::::::::::::::::::::::::::::: 기초정보 입력 ::::::::::::::::::::::::::::::::::::::
 
 #:: 채굴된 사슬코인을 받을 노드별 지갑주소 입력 ::
-WalletAddress = '22a43847efd74831c837e8fdf299490dc5bff1edb847'
+WalletAddress='22a43847efd74831c837e8fdf299490dc5bff1edb847'
 
 #:: 공인 IP 입력 ::
-IpAddress='1.1.1.1'
+IpAddress='211.222.145.105'
 
 #:: 블록데이터를 받아올 타겟노드 입력 ::
 PeerNodeAddress='main.saseul.net'
@@ -42,28 +42,31 @@ PS3='메뉴를 선택해주세요. : '
 foods=("1.도커설치" "2.사슬노드_다운로드" "3.노드_설치" "4.노드_싱크" "5.노드_로그" "6.노드_GetEnv" "7.종료")
 
 number=1
-SP=79 #80포트부터 시작하기 위해서
+SP=79 #80포트부터 시작
 
 select fav in "${foods[@]}"; do
     case $fav in
         "1.도커설치")
 	        echo " "
-            echo "도커 설치 ..."
+            echo "패키지 업데이트 ..."
 	    	A=$(apt-get update)
 	    	echo "$A"
+	    	echo "curl 설치 ..."
 	    	AA=$(apt install curl)
 	    	echo "$AA"
 	    	echo "[####                  ]"
+	    	echo "gpg 키등록 ..."
 	    	B=$(curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - )
 	    	echo "$B"
 	    	#BB=$(apt-key add -)
 	    	#echo "$BB"
-	    	C=$(add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" )
+	    	C=$(add-apt-repository \deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\ )
 	    	echo "$C"
 	    	echo "[######                ]"
 	    	D=$(apt-get update)
 	    	echo "$D"
 	    	echo "[###############       ]"
+	    	echo "도커 설치 ..."
 	    	E=$(apt-get install docker-ce docker-ce-cli containerd.io)
 	    	echo "$E"
 	    	echo "[######################]"
@@ -149,7 +152,7 @@ select fav in "${foods[@]}"; do
             	plus=`expr $SP + $number`
 				A=$(docker exec -i saseul-node$plus saseul-script log )
 				echo "$A"
-			
+				sleep 1	
 				((number++))
 			done
         	
