@@ -62,7 +62,7 @@ select fav in "${foods[@]}"; do
 			echo "*********************************************************"
             ;;
         "4.SingeFroceSync")
-            echo "싱크하실 노드번호를 입혁하세요."
+            echo "싱크하실 노드번호를 입력하세요."
 			read SINGLE
 			A=$(docker exec -i saseul-node$SINGLE saseul-script forcesync -p $PeerNodeAddress)
 			echo "$A"
