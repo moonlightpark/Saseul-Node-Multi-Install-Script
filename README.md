@@ -12,7 +12,7 @@ First, run the shell script :
 
 ```bash
 # Set basic variables set.
-vi install.sh  (wallet address, port, IP address)
+vi install.sh  (port, IP)
 :wq
 # Permission settings
 chmod 777 install.sh
