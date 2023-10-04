@@ -96,20 +96,20 @@ select fav in "${foods[@]}"; do
 			do
             	plus=`expr $SP + $number`
 				echo "$number: ""$plus 포트"
-				A=$(mkdir /var/saseul-data$plus)
+				A=$(sudo mkdir /var/saseul-data$plus)
 				echo "[###                   ]"
-				B=$(docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)
+				B=$(sudo docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)
 			    echo "$B"
 				sleep 1
 				echo "[########              ]"
-				#D=$(docker exec -i saseul-node$plus saseul-install)
+				#D=$(sudo docker exec -i saseul-node$plus saseul-install)
 				#echo "$D"
 				echo "[###############       ]"
 				echo "[ENTER]"
-				C=$(docker exec -i saseul-node$plus saseul-script setenv --endpoint $IpAddress:$plus)
+				C=$(sudo docker exec -i saseul-node$plus saseul-script setenv --endpoint $IpAddress:$plus)
 				echo "$C"
 
-				E=$(docker exec -i saseul-node$plus saseul-script setenv -m $WalletAddress)
+				E=$(sudo docker exec -i saseul-node$plus saseul-script setenv -m $WalletAddress)
 				echo "$E"				
 				echo "[######################]"
 				
@@ -130,7 +130,7 @@ select fav in "${foods[@]}"; do
 			do
             	plus=`expr $SP + $number`
 				echo "$number: ""$plus 노드 싱크를 시작합니다."
-				A=$(docker exec -i saseul-node$plus saseul-script forcesync -p $PeerNodeAddress)
+				A=$(sudo docker exec -i saseul-node$plus saseul-script forcesync -p $PeerNodeAddress)
 				echo "$A"
         	
 				((number++))
@@ -150,7 +150,7 @@ select fav in "${foods[@]}"; do
 			do
 			
             	plus=`expr $SP + $number`
-				A=$(docker exec -i saseul-node$plus saseul-script log )
+				A=$(sudo docker exec -i saseul-node$plus saseul-script log )
 				echo "$A"
 				sleep 1	
 				((number++))
@@ -169,7 +169,7 @@ select fav in "${foods[@]}"; do
 			while [ $number -le $END ]
 			do
             	plus=`expr $SP + $number`
-				A=$(docker exec -i saseul-node$plus saseul-script getenv -a )
+				A=$(sudo docker exec -i saseul-node$plus saseul-script getenv -a )
 				echo "$A"
 				
 				((number++))
@@ -188,7 +188,7 @@ select fav in "${foods[@]}"; do
 			while [ $number -le $END ]
 			do
             	plus=`expr $SP + $number`
-				A=$(docker exec -i saseul-node$plus saseul-script start  )
+				A=$(sudo docker exec -i saseul-node$plus saseul-script start  )
 				echo "$A"
 				
 				((number++))
@@ -207,7 +207,7 @@ select fav in "${foods[@]}"; do
 			while [ $number -le $END ]
 			do
             	plus=`expr $SP + $number`
-				A=$(docker exec -i saseul-node$plus saseul-script stop  )
+				A=$(sudo docker exec -i saseul-node$plus saseul-script stop  )
 				echo "$A"
 				
 				((number++))
