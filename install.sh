@@ -6,10 +6,10 @@ clear
 #:::::::::::::::::::::::::::::::::::::: 기초정보 입력 ::::::::::::::::::::::::::::::::::::::
 
 #:: 채굴된 사슬코인을 받을 노드별 지갑주소 입력 ::
-WalletAddress='22a43847efd74831c837e8fdf299490dc5bff1edb847'
+WalletAddress='111212312312312312312312312312312312312312312312'
 
 #:: 공인 IP 입력 ::
-IpAddress='211.222.145.105'
+IpAddress='1.1.1.1'
 
 #:: 블록데이터를 받아올 타겟노드 입력 ::
 PeerNodeAddress='main.saseul.net'
@@ -39,7 +39,7 @@ echo " ↓↓↓                                             "
 echo " sudo bash 명령을 실행 root 권한으로 실행 (필수)        "
 echo "                                                 "
 PS3='메뉴를 선택해주세요. : '
-foods=("1.도커설치" "2.사슬노드_다운로드" "3.노드_설치" "4.노드_싱크" "5.노드_로그" "6.노드_GetEnv" "7.종료")
+foods=("1.도커설치" "2.사슬노드_다운로드" "3.노드_설치" "4.노드_싱크" "5.노드_로그" "6.노드_GetEnv" "7.노드_Start" "8.노드_Stop" "9.종료")
 
 number=1
 SP=79 #80포트부터 시작
@@ -47,32 +47,32 @@ SP=79 #80포트부터 시작
 select fav in "${foods[@]}"; do
     case $fav in
         "1.도커설치")
-	        echo " "
+	        echo "***********************************************************************************************"
             echo "패키지 업데이트 ..."
-	    	A=$(apt-get update)
-	    	echo "$A"
+	    	echo "sudo apt-get update     <- 1) 복사해서 실행"
+	    	echo " "
 	    	echo "curl 설치 ..."
-	    	AA=$(apt install curl)
-	    	echo "$AA"
-	    	echo "[####                  ]"
+	    	echo "sudo apt install curl    <- 2) 복사해서 실행"
+	    	echo " "
 	    	echo "gpg 키등록 ..."
-	    	B=$(curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - )
-	    	echo "$B"
-	    	#BB=$(apt-key add -)
-	    	#echo "$BB"
-	    	C=$(add-apt-repository \deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\ )
-	    	echo "$C"
-	    	echo "[######                ]"
-	    	D=$(apt-get update)
-	    	echo "$D"
-	    	echo "[###############       ]"
+	    	echo "sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -       <- 3) 복사해서 실행"
+	    	echo " "
+			echo "repository 추가 ..."
+			echo " "
+	    	echo 'sudo sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"    <- 4) 복사해서 실행'
+	    	echo " "
+	    	echo "업데이트 ... "
+	    	echo "sudo apt-get update  <- 5) 복사해서 실행"
+	    	echo " "
 	    	echo "도커 설치 ..."
-	    	E=$(apt-get install docker-ce docker-ce-cli containerd.io)
-	    	echo "$E"
-	    	echo "[######################]"
-			echo "*********************************************************"
-			echo "${foods[@]}"
-			echo "*********************************************************"
+	    	echo "sudo apt-get install docker-ce docker-ce-cli containerd.io     <- 6)복사해서 실행"
+			echo " "
+			echo "도커 설치 확인..."
+			echo "sudo systemctl status docker <- 7)복사해서 실행"
+			echo " "
+			echo "./install.sh  <- 8)복사해서 실행"
+			echo "***********************************************************************************************"
+			exit
             ;;
         "2.사슬노드_다운로드")
 	        echo " "
@@ -180,8 +180,45 @@ select fav in "${foods[@]}"; do
 			echo "${foods[@]}"
 			echo "*********************************************************"
             ;;
-
-		"7.종료")
+        "7.노드_Start")
+        	echo " "
+            number=1
+        	echo "설치된 노드 갯수를 입력하세요. : "
+        	read END
+			while [ $number -le $END ]
+			do
+            	plus=`expr $SP + $number`
+				A=$(docker exec -i saseul-node$plus saseul-script start  )
+				echo "$A"
+				
+				((number++))
+			done
+        	
+			echo " "
+			echo "*********************************************************"
+			echo "${foods[@]}"
+			echo "*********************************************************"
+            ;;
+        "8.노드_Stop")
+        	echo " "
+            number=1
+        	echo "설치된 노드 갯수를 입력하세요. : "
+        	read END
+			while [ $number -le $END ]
+			do
+            	plus=`expr $SP + $number`
+				A=$(docker exec -i saseul-node$plus saseul-script stop  )
+				echo "$A"
+				
+				((number++))
+			done
+        	
+			echo " "
+			echo "*********************************************************"
+			echo "${foods[@]}"
+			echo "*********************************************************"
+            ;;
+		"9.종료")
 		    echo "작업을 종료했습니다."
 	    	exit
 		    ;;
