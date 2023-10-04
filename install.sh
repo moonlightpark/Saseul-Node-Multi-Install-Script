@@ -100,7 +100,7 @@ select fav in "${foods[@]}"; do
 				echo "[###                   ]"
 				B=$(docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)
 			    echo "$B"
-				sleep 3
+				sleep 1
 				echo "[########              ]"
 				#D=$(docker exec -i saseul-node$plus saseul-install)
 				#echo "$D"
