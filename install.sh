@@ -100,7 +100,6 @@ select fav in "${foods[@]}"; do
 				echo "[###                   ]"
 				B=$(sudo docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)
 			    echo "$B"
-				sleep 1
 				echo "[########              ]"
 				#D=$(sudo docker exec -i saseul-node$plus saseul-install)
 				#echo "$D"
@@ -148,14 +147,11 @@ select fav in "${foods[@]}"; do
         	read END
 			while [ $number -le $END ]
 			do
-			
             	plus=`expr $SP + $number`
 				A=$(sudo docker exec -i saseul-node$plus saseul-script log )
 				echo "$A"
-				sleep 1	
 				((number++))
 			done
-        	
 			echo " "
 			echo "*********************************************************"
 			echo "${foods[@]}"
