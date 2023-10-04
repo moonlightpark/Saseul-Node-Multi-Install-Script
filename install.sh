@@ -77,10 +77,10 @@ select fav in "${foods[@]}"; do
         "2.사슬노드_다운로드")
 	        echo " "
             echo "사슬노드 도커 이미지를 다운로드중 ...(잠시만 기다려주세요.)"
-	    	A=$(docker pull artifriends/saseul-network:latest)
+	    	A=$(sudo docker pull artifriends/saseul-network:latest)
 	    	echo "$A"
 	    	sleep 1
-	    	B=$(docker images)
+	    	B=$(sudo docker images)
 	    	echo "$B"
 	    	echo " "
 			echo "*********************************************************"
