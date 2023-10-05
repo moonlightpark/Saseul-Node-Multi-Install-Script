@@ -6,10 +6,10 @@ clear
 #:::::::::::::::::::::::::::::::::::::: 기초정보 입력 ::::::::::::::::::::::::::::::::::::::
 
 #:: 채굴된 사슬코인을 받을 노드별 지갑주소 입력 ::
-WalletAddress='111212312312312312312312312312312312312312312312'
+WalletAddress='a7d8e46c6d956fff9dc534dfbf4904020d5484109532'
 
 #:: 공인 IP 입력 ::
-IpAddress='1.1.1.1'
+IpAddress='124.63.219.216'
 
 #:: 블록데이터를 받아올 타겟노드 입력 ::
 PeerNodeAddress='main.saseul.net'
@@ -39,10 +39,10 @@ echo " ↓↓↓                                             "
 echo " sudo bash 명령을 실행 root 권한으로 실행 (필수)        "
 echo "                                                 "
 PS3='메뉴를 선택해주세요. : '
-foods=("1.도커설치" "2.사슬노드_다운로드" "3.노드_설치" "4.노드_싱크" "5.노드_로그" "6.노드_GetEnv" "7.노드_Start" "8.노드_Stop" "9.종료")
+foods=("1.도커설치" "2.사슬노드_다운로드" "3.노드_설치" "4.노드_싱크" "5.노드_로그" "6.노드_GetEnv" "7.노드_Start" "8.노드_Stop" "9.노드_설정" "10.종료")
 
 number=1
-SP=79 #80포트부터 시작
+SP=89 #90포트부터 시작
 
 select fav in "${foods[@]}"; do
     case $fav in
@@ -77,11 +77,9 @@ select fav in "${foods[@]}"; do
         "2.사슬노드_다운로드")
 	        echo " "
             echo "사슬노드 도커 이미지를 다운로드중 ...(잠시만 기다려주세요.)"
-	    	A=$(sudo docker pull artifriends/saseul-network:latest)
-	    	echo "$A"
+	    	sudo docker pull artifriends/saseul-network:latest
 	    	sleep 1
-	    	B=$(sudo docker images)
-	    	echo "$B"
+	    	sudo docker images
 	    	echo " "
 			echo "*********************************************************"
 			echo "${foods[@]}"
@@ -98,18 +96,18 @@ select fav in "${foods[@]}"; do
 				echo "$number: ""$plus 포트"
 				A=$(sudo mkdir /var/saseul-data$plus)
 				echo "[###                   ]"
-				B=$(sudo docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)
-			    echo "$B"
+				echo "$(sudo docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)"
 				echo "[########              ]"
-				D=$(sudo docker exec -i saseul-node$plus saseul-install)
-				echo "$D"
-				echo "[###############       ]"
-				echo "[ENTER]"
-				C=$(sudo docker exec -i saseul-node$plus saseul-script setenv --endpoint $IpAddress:$plus)
-				echo "$C"
-
-				E=$(sudo docker exec -i saseul-node$plus saseul-script setenv -m $WalletAddress)
-				echo "$E"				
+                
+				sudo docker exec -i saseul-node$plus saseul-install
+				sleep 1
+                echo " "
+                echo " ****"
+                echo " y/n 입력하는 곳에서 y 를 모두 4번 입력하고 넘어가세요."
+                echo " 9번 메뉴에서 지갑주소 설정을 일괄 진행합니다."
+                echo " "
+                echo " ***"
+                sudo docker exec -i saseul-node$plus saseul-script setenv
 				echo "[######################]"
 				
 				((number++))
@@ -129,8 +127,7 @@ select fav in "${foods[@]}"; do
 			do
             	plus=`expr $SP + $number`
 				echo "$number: ""$plus 노드 싱크를 시작합니다."
-				A=$(sudo docker exec -i saseul-node$plus saseul-script forcesync -p $PeerNodeAddress)
-				echo "$A"
+				sudo docker exec -i saseul-node$plus saseul-script forcesync -p $PeerNodeAddress
         	
 				((number++))
 			done
@@ -184,12 +181,10 @@ select fav in "${foods[@]}"; do
 			while [ $number -le $END ]
 			do
             	plus=`expr $SP + $number`
-				A=$(sudo docker exec -i saseul-node$plus saseul-script start  )
-				echo "$A"
+				sudo docker exec -i saseul-node$plus saseul-script start
 				
 				((number++))
 			done
-        	
 			echo " "
 			echo "*********************************************************"
 			echo "${foods[@]}"
@@ -203,18 +198,35 @@ select fav in "${foods[@]}"; do
 			while [ $number -le $END ]
 			do
             	plus=`expr $SP + $number`
-				A=$(sudo docker exec -i saseul-node$plus saseul-script stop  )
-				echo "$A"
+				sudo docker exec -i saseul-node$plus saseul-script stop
 				
 				((number++))
 			done
-        	
 			echo " "
 			echo "*********************************************************"
 			echo "${foods[@]}"
 			echo "*********************************************************"
             ;;
-		"9.종료")
+        "9.노드_설정")
+        	echo " "
+            number=1
+        	echo "설치된 노드 갯수를 입력하세요. : "
+        	read END
+			while [ $number -le $END ]
+			do
+            	plus=`expr $SP + $number`
+				sudo docker exec -i saseul-node$plus saseul-install
+                sudo docker exec -i saseul-node$plus saseul-script setenv --endpoint $IpAddress:$plus
+				sudo docker exec -i saseul-node$plus saseul-script setenv -m $WalletAddress
+				
+				((number++))
+			done
+			echo " "
+			echo "*********************************************************"
+			echo "${foods[@]}"
+			echo "*********************************************************"
+            ;;
+		"10.종료")
 		    echo "작업을 종료했습니다."
 	    	exit
 		    ;;
