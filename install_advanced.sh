@@ -101,13 +101,9 @@ select fav in "${foods[@]}"; do
 				B=$(sudo docker run -d --init --name saseul-node$plus -p $plus:80 -v /var/saseul-data$plus:/var/saseul/saseul-network/data artifriends/saseul-network:latest)
 			    echo "$B"
 				echo "[########              ]"
-				D=$(sudo docker exec -i saseul-node$plus saseul-install)
-				echo "$D"
-				echo "[###############       ]"
-				echo "[ENTER]"
 				C=$(sudo docker exec -i saseul-node$plus saseul-script setenv --endpoint $IpAddress:$plus)
 				echo "$C"
-
+				echo "[###############       ]"
 				E=$(sudo docker exec -i saseul-node$plus saseul-script setenv -m $WalletAddress)
 				echo "$E"				
 				echo "[######################]"
@@ -221,5 +217,6 @@ select fav in "${foods[@]}"; do
 	        *) echo " $REPLY 는 없는 메뉴 입니다.";;
     esac
 done
+
 
 
