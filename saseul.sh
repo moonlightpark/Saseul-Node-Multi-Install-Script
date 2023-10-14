@@ -44,46 +44,46 @@ select fav in "${foods[@]}"; do
         "3.FroceSync")
             echo "FroceSync ..."
 
-			number=80
-			while [ $number -le $END ]
-			do
-				RE=$(docker restart saseul-node$number)
-				echo "$RE"
-				sleep 3
-				A=$(docker exec -i saseul-node$number saseul-script forcesync -p $PeerNodeAddress)
-				echo "**********"
-				echo "$number: ""$A"
-				echo "**********"
-				sleep 3
-				B=$(docker exec -i saseul-node$number saseul-script start)
-                echo "$B"
-                sleep 6
-                STM=$(docker exec -i saseul-node$number saseul-script startmining)
-                echo "$STM"
-				((number++))
-			done
-			echo "*******************************************************************"
-			echo "${foods[@]}"
-			echo "*******************************************************************"
+		number=80
+		while [ $number -le $END ]
+		do
+			RE=$(docker restart saseul-node$number)
+			echo "$RE"
+			sleep 3
+			A=$(docker exec -i saseul-node$number saseul-script forcesync -p $PeerNodeAddress)
+			echo "**********"
+			echo "$number: ""$A"
+			echo "**********"
+			sleep 3
+			B=$(docker exec -i saseul-node$number saseul-script start)
+                	echo "$B"
+                	sleep 6
+                	STM=$(docker exec -i saseul-node$number saseul-script startmining)
+        	        echo "$STM"
+			((number++))
+		done
+		echo "*******************************************************************"
+		echo "${foods[@]}"
+		echo "*******************************************************************"
             ;;
         "4.SingeFroceSync")
             echo "싱크하실 노드번호를 입력하세요 : "
-			read SINGLE
-			RE=$(docker restart saseul-node$SINGLE)
-			echo "$RE"
-			sleep 3
-			A=$(docker exec -i saseul-node$SINGLE saseul-script forcesync -p $PeerNodeAddress)
-			echo "$A"
-			sleep 3
+		read SINGLE
+		RE=$(docker restart saseul-node$SINGLE)
+		echo "$RE"
+		sleep 3
+		A=$(docker exec -i saseul-node$SINGLE saseul-script forcesync -p $PeerNodeAddress)
+		echo "$A"
+		sleep 3
             B=$(docker exec -i saseul-node$SINGLE saseul-script start)
             echo "$B"
             sleep 6
             STM=$(docker exec -i saseul-node$SINGLE saseul-script startmining)
             echo "$STM"
-			echo " "
-			echo "*******************************************************************"
-			echo "${foods[@]}"
-			echo "*******************************************************************"
+		echo " "
+		echo "*******************************************************************"
+		echo "${foods[@]}"
+		echo "*******************************************************************"
             ;;
         "5.Log")
             echo "Log ..."
