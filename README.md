@@ -20,7 +20,14 @@ chmod 777 install.sh
 ./install.sh
 ```
 
+설치이후에는 saseul.sh 로 관리
 
+```bash
+
+chmod 777 saseul.sh
+./saseul.sh
+
+```
 
 
 Saseul Developer OpenTalk : https://open.kakao.com/o/gclfhqHf
