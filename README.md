@@ -30,6 +30,18 @@ chmod 777 saseul.sh
 ```
 
 
+모든 노드 로그 감시
+
+```bash
+
+chmod 777 saseulLog.sh
+while true; do ./saseulLog.sh ; sleep 1; done
+
+```
+
+
+
+
 Saseul Developer OpenTalk : https://open.kakao.com/o/gclfhqHf
 
 Coffee (SASEUL) : a7d8e46c6d956fff9dc534dfbf4904020d5484109532
