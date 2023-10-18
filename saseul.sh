@@ -3,6 +3,8 @@
 END=90
 
 PeerNodeAddress='main.saseul.net'
+PeerNodeAddress2='aroma.saseul.net'
+PeerNodeAddress3='blanc.saseul.net'
 
 PS3='메뉴를 선택해주세요. : '
 foods=("1.Start" "2.StartMining" "3.FroceSync" "4.SingeFroceSync" "5.Log" "6.Exit")
@@ -69,10 +71,11 @@ select fav in "${foods[@]}"; do
         "4.SingeFroceSync")
             echo "싱크하실 노드번호를 입력하세요 : "
 		read SINGLE
-		RE=$(docker restart saseul-node$SINGLE)
-		echo "$RE"
-		sleep 3
 		A=$(docker exec -i saseul-node$SINGLE saseul-script forcesync -p $PeerNodeAddress)
+		echo "$A"
+  		A=$(docker exec -i saseul-node$SINGLE saseul-script forcesync -p $PeerNodeAddress2)
+		echo "$A"
+  		A=$(docker exec -i saseul-node$SINGLE saseul-script forcesync -p $PeerNodeAddress3)
 		echo "$A"
 		sleep 3
             B=$(docker exec -i saseul-node$SINGLE saseul-script start)
