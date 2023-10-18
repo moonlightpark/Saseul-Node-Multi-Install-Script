@@ -1,12 +1,7 @@
 #!/bin/bash
 
-clear
-
-
 END=84
-
 PeerNodeAddress='main.saseul.net'
-
 
 PS3='메뉴를 선택해주세요. : '
 foods=("1.Start" "2.StartMining" "3.FroceSync" "4.SingeFroceSync" "5.Log" "6.Exit")
