@@ -13,9 +13,6 @@ do
     continue
   fi
 
-
-#while [ $number -le $END ]
-#do
   A=$(docker exec -i saseul-node$i saseul-script log )
   echo "**********"
   echo "Node $i Port: ""$A"
