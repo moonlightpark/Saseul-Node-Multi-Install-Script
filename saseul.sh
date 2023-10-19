@@ -1,6 +1,6 @@
 #!/bin/bash
 
-END=90
+END=100  # 노드의 마지막 포트번호
 
 PeerNodeAddress='main.saseul.net'
 PeerNodeAddress2='aroma.saseul.net'
