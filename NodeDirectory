@@ -1,0 +1,45 @@
+.
+├── bunch
+│   └── tx-1697665709.bunch
+├── chain_info     --> Resource Blocks(Number)
+├── collector.pid
+├── data_pool.pid
+├── env
+├── known_hosts
+├── main_chain
+│   ├── 0000
+│   ├── 0001
+│   ├── 0002
+│   ├── 0003
+│   ├── 0004
+│   ├── 0005
+│   ├── 0006
+│   ├── 0007
+│   ├── 0008
+│   ├── 0009
+│   ├── 000a
+│   ├── 000b
+│   ├── 000c
+│   ├── 000d
+│   └── index
+├── maker.pid
+├── master.pid
+├── miner.pid
+├── peers
+├── peer_searcher.pid
+├── resource_chain
+│   ├── 0000
+│   ├── 0001
+│   ├── 0002
+│   └── index
+└── status_bundle
+    ├── info        --> My Main Block (Number)
+    ├── lbundle
+    ├── lbundle_index
+    ├── locals
+    ├── tmp
+    ├── ubundle-0000
+    ├── ubundle_index
+    └── universals-0000
+
+4 directories, 38 files
